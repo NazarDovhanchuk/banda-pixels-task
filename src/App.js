@@ -1,42 +1,14 @@
-import Header from './components/Header/Header';
-import { useState } from 'react';
+import { Provider } from 'react-redux';
+import { TodoInput } from './components/TodoInput/TodoInput';
 import { TodoList } from './components/TodoList/TodoList';
+import {store} from './redux/store';
 
 const App = () => {
-  const [todos, setTodos] = useState([]);
-  const [filter, setFilter] = useState('All');
-
-  const addTodo = value => setTodos(
-    [
-      ...todos,
-      {
-        id: Date.now(),
-        title: value,
-        completed: false,
-        filter: 'All',
-      },
-    ],
-  );
-
-  let allTodos = [];
-
-  switch (filter) {
-    case 'Active':
-      allTodos = todos.filter(todo => todo.completed === false);
-      break;
-    case 'Completed':
-      allTodos = todos.filter(todo => todo.completed === true);
-      break;
-    default:
-      allTodos = todos;
-      break;
-  }
-  
   return (
-    <>
-      <Header addTodo={addTodo} />
-      <TodoList todos={allTodos} />
-    </>
+    <Provider store={store}>
+      <TodoInput />
+      <TodoList />
+    </Provider>
   );
 }
 
