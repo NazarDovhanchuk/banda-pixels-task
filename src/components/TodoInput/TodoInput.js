@@ -1,6 +1,5 @@
 
-import React from 'react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { v1 as uuid} from 'uuid';
 import { addTodo } from '../../redux/actions';
@@ -13,10 +12,20 @@ export function TodoInput () {
       <h1>Tech Task</h1>
       <input
         type='text'
-        onChange={(event) => setName(event.target.value)}
         value={name}
+        onChange={(e) => setName(e.target.value)}
       ></input>
-      <button>Add</button>
+      <button
+        onClick={() => {
+          dispatch(addTodo(
+            {
+              id: uuid(),
+              name: name,
+            }
+          ));
+          setName('')
+        }}
+      >Add</button>
     </header>
   );
 }

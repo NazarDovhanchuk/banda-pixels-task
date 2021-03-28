@@ -1,14 +1,8 @@
+import { v1 as uuid} from 'uuid';
+
 export let todos = [
   {
-    id: 1,
+    id: uuid(),
     name: "BandaPixels Tech Task"
   },
-  {
-    id: 2,
-    name: "BandaPixels Tech Task"
-  },
-  {
-    id: 3,
-    name: "BandaPixels Tech Task"
-  }
 ]
