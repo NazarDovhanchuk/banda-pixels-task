@@ -1,5 +1,6 @@
 export const ADD_TODO = "ADD_TODO";
 export const DELETE_TODO = "DELETE_TODO";
+export const TOGGLE_TODO = "TOGGLE_TODO";
 
 export function addTodo (todo) {
   return {
@@ -14,3 +15,10 @@ export function deleteTodo (todoId) {
     payload: todoId,
   }
 }
+
+export function toggleTodo (todoId) {
+  return {
+    type: TOGGLE_TODO,
+    payload: todoId
+  }
+};

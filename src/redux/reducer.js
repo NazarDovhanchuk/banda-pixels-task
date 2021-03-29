@@ -1,4 +1,4 @@
-import {ADD_TODO, DELETE_TODO} from './actions';
+import {ADD_TODO, DELETE_TODO, TOGGLE_TODO} from './actions';
 import { todos } from './states';
 
 export let reducer = (state = todos, action) => {
@@ -10,7 +10,17 @@ export let reducer = (state = todos, action) => {
       return newTodos;
     case DELETE_TODO:
       newTodos = [...state];
-      return newTodos.filter(todo => todo.id !== action.payload)
+      return newTodos.filter(todo => todo.id !== action.payload);
+    case TOGGLE_TODO:
+      newTodos = [...state];
+      return newTodos.map((todo) => {
+        if(todo.id === action.payload) {
+        return {
+          ...todo,
+          isCompleted: !todo.isCompleted
+        }
+      } return {...todo}
+      })
       default:
   }
   return state;

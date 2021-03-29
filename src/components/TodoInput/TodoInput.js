@@ -7,6 +7,17 @@ import { addTodo } from '../../redux/actions';
 export function TodoInput () {
   let [name, setName] = useState();
   let dispatch = useDispatch();
+
+  const addHandler = () => {
+    dispatch(addTodo(
+      {
+        id: uuid(),
+        name: name,
+        isCompleted: true,
+      }
+    ));
+    setName('')
+  }
   return (
     <header className="header">
       <h1>Tech Task</h1>
@@ -16,15 +27,7 @@ export function TodoInput () {
         onChange={(e) => setName(e.target.value)}
       ></input>
       <button
-        onClick={() => {
-          dispatch(addTodo(
-            {
-              id: uuid(),
-              name: name,
-            }
-          ));
-          setName('')
-        }}
+        onClick={addHandler}
       >Add</button>
     </header>
   );
