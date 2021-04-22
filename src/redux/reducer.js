@@ -1,26 +1,25 @@
-import {ADD_TODO, DELETE_TODO, TOGGLE_TODO} from './actions';
+import {ADD_TODO, DELETE_TODO, TOGGLE_TODO } from './actions';
 import { todos } from './states';
 
 export let reducer = (state = todos, action) => {
   let newTodos;
   switch (action.type) {
     case ADD_TODO:
-      newTodos = [...state];
-      newTodos.push(action.payload);
-      return newTodos;
+      return [...state, action.payload]
     case DELETE_TODO:
-      newTodos = [...state];
-      return newTodos.filter(todo => todo.id !== action.payload);
+      return [...state].filter(todo => todo.id !== action.payload);
     case TOGGLE_TODO:
       newTodos = [...state];
-      return newTodos.map((todo) => {
-        if(todo.id === action.payload) {
-        return {
-          ...todo,
-          isCompleted: !todo.isCompleted
-        }
-      } return {...todo}
-      })
+      return newTodos.map(todo => {
+         return (todo.id === action.payload)
+                  ? {
+                      ...todo,
+                      isCompleted: !todo.isCompleted
+                    }
+                  : {
+                      ...todo
+                    }
+        })
       default:
   }
   return state;

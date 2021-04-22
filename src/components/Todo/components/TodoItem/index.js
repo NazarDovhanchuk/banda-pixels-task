@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { deleteTodo, toggleTodo } from '../../redux/actions';
+import { deleteTodo, toggleTodo } from '../../../../redux/actions';
 
 export default function TodoItem({ todo }) {
   let dispatch = useDispatch();
@@ -9,8 +9,8 @@ export default function TodoItem({ todo }) {
   return (
     <div>
       <li>
-        <input type="checkbox" onClick={toggleHandler}></input>
-        {todo.isCompleted ? "" : "Done"}
+        <input type="checkbox" checked={todo.isCompleted} onClick={toggleHandler}></input>
+        {todo && todo.isCompleted ? "👌" : "👋"}
         <span>{todo.name}</span>
         <button onClick={deleteHandler}>Delete</button>
       </li>

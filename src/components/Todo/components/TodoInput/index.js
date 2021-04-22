@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { v1 as uuid} from 'uuid';
-import { addTodo } from '../../redux/actions';
+import { addTodo } from '../../../../redux/actions';
 
 export function TodoInput () {
   let [name, setName] = useState();
@@ -13,7 +13,7 @@ export function TodoInput () {
       {
         id: uuid(),
         name: name,
-        isCompleted: true,
+        isCompleted: false,
       }
     ));
     setName('')
