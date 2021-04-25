@@ -1,11 +1,13 @@
 
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { v1 as uuid} from 'uuid';
+import { v1 as uuid } from 'uuid';
 import { addTodo } from '../../../../redux/actions';
 
-export function TodoInput () {
-  let [name, setName] = useState();
+import "./style.scss";
+
+export const TodoInput: React.FC = () => {
+  let [name, setName] = useState('');
   let dispatch = useDispatch();
 
   const addHandler = () => {
@@ -20,15 +22,13 @@ export function TodoInput () {
   }
   return (
     <header className="header">
-      <h1>Tech Task</h1>
+      <h1 className="header__title">Tech Task</h1>
       <input
         type='text'
         value={name}
         onChange={(e) => setName(e.target.value)}
       ></input>
-      <button
-        onClick={addHandler}
-      >Add</button>
+      <button onClick={addHandler}>Add</button>
     </header>
   );
 }

@@ -1,7 +1,10 @@
-import { useDispatch, useSelector } from 'react-redux';
+import React from "react";
 
-export function TodoFilter ({ setFilter }) {
+interface TodoFilterProps {
+  setFilter: Function,
+}
 
+export const TodoFilter: React.FC<TodoFilterProps> = ({ setFilter }) => {
   return (
     <div>
       <button onClick={() => setFilter("all")}>All</button>

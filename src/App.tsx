@@ -1,7 +1,8 @@
 import { Provider } from 'react-redux';
 import { Todo } from './components/Todo'
 
-import {store} from './redux/store';
+import { store } from './redux/store';
+
 
 const App = () => {
   return (
