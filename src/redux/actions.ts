@@ -1,6 +1,7 @@
 export const ADD_TODO = "ADD_TODO";
 export const DELETE_TODO = "DELETE_TODO";
 export const TOGGLE_TODO = "TOGGLE_TODO";
+export const SET_FILTER = "SET_FILTER";
 
 export function addTodo(todo: { id: string; name: string; isCompleted: boolean; }) {
   return {
@@ -22,3 +23,10 @@ export function toggleTodo(todoId: number) {
     payload: todoId
   }
 };
+
+export function setFilter(filter: any) {
+  return {
+    type: SET_FILTER,
+    payload: filter
+  }
+}

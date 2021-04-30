@@ -1,5 +1,8 @@
-import React from 'react';
 import { useDispatch } from 'react-redux';
+import { Checkbox, IconButton, ListItem, ListItemText } from '@material-ui/core/';
+import DeleteIcon from '@material-ui/icons/Delete';
+import cx from "classnames";
+
 import { deleteTodo, toggleTodo } from '../../../../redux/actions';
 
 import "./style.scss";
@@ -13,18 +16,26 @@ interface TodoItemProps {
 }
 
 export const TodoItem: React.FC<TodoItemProps> = ({ todo }) => {
-  let { isCompleted } = todo;
+  const { isCompleted } = todo;
   let dispatch = useDispatch();
   const deleteHandler = () => dispatch(deleteTodo(todo.id));
   const toggleHandler = () => dispatch(toggleTodo(todo.id));
   return (
     <div>
-      <li className="todoItem">
-        <input type="checkbox" checked={isCompleted} onChange={toggleHandler}></input>
-        {todo && todo.isCompleted ? "👌" : "👋"}
-        <span>{todo.name}</span>
-        <button onChange={deleteHandler}>Delete</button>
-      </li>
-    </div>
+      <ListItem>
+        <Checkbox
+          checked={isCompleted}
+          onChange={toggleHandler}
+          inputProps={{ 'aria-label': 'primary checkbox' }}
+        />
+        <ListItemText primary={todo.name} className={cx(
+          "todo__item",
+          todo && todo.isCompleted && "todo__item-completed"
+        )} />
+        <IconButton aria-label="delete" onClick={deleteHandler} color="secondary">
+          <DeleteIcon />
+        </IconButton>
+      </ListItem>
+    </div >
   );
 }

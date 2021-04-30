@@ -1,7 +1,9 @@
 
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { Input, Button } from '@material-ui/core/';
 import { v1 as uuid } from 'uuid';
+
 import { addTodo } from '../../../../redux/actions';
 
 import "./style.scss";
@@ -22,13 +24,25 @@ export const TodoInput: React.FC = () => {
   }
   return (
     <header className="header">
-      <h1 className="header__title">Tech Task</h1>
-      <input
-        type='text'
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-      ></input>
-      <button onClick={addHandler}>Add</button>
+      <h1 className="header__title">TodoApp</h1>
+      <div className="header__input">
+        <Input
+          placeholder="Enter your task"
+          value={name}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => setName(e.target.value)}
+          inputProps={{
+            "aria-label": "Description"
+          }}
+          style={{ width: "100%" }}
+        />
+        <Button
+          onClick={addHandler}
+          variant="contained"
+          color="primary"
+          style={{ width: "10%" }}
+        >Add
+      </Button>
+      </div>
     </header>
   );
 }

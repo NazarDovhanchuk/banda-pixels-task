@@ -1,15 +1,27 @@
-import React from "react";
+import { useDispatch } from "react-redux";
+import { Button } from '@material-ui/core/';
 
-interface TodoFilterProps {
-  setFilter: Function,
-}
+import { setFilter } from '../../../../redux/actions';
+import { VISIBILITY_FILTERS } from "../../../../constans";
 
-export const TodoFilter: React.FC<TodoFilterProps> = ({ setFilter }) => {
+import './style.scss';
+
+export const TodoFilter: React.FC = () => {
+  const dispatch = useDispatch();
+  const mappedFilters: any = VISIBILITY_FILTERS;
+
   return (
     <div>
-      <button onClick={() => setFilter("all")}>All</button>
-      <button onClick={() => setFilter("uncompleted")}>Active</button>
-      <button onClick={() => setFilter("completed")}>Completed</button>
+      {Object.keys(mappedFilters).map((filterKey: string) => {
+        const currentFilter = mappedFilters[filterKey];
+
+        return (
+          <Button
+            key={currentFilter} onClick={() => dispatch(setFilter(currentFilter))}
+          >{currentFilter}
+          </Button>
+        )
+      })}
     </div>
   )
 }
